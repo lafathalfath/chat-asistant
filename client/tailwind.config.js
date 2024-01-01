@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'montserrat': ['Montserrat', 'Poppins', 'Inknut Antiqua', 'sans-serif']
+    },
   },
   plugins: [],
 }
