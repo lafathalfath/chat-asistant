@@ -10,5 +10,5 @@ export default {
       'montserrat': ['Montserrat', 'Poppins', 'Inknut Antiqua', 'sans-serif']
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }

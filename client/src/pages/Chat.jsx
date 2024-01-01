@@ -6,34 +6,54 @@ import { IoIosArrowBack } from "react-icons/io"
 import Conversation from './component/Conversation'
 
 const Chat=()=>{
-    const [data, setData] = useState(null)
-    const handleSendMessage=async()=>{
-        try {
-            if(data) {
-                const res = await axios('http://127.0.0.1:8000/api/send-chat',{message: data})
-                // res
-            }
-        } catch (error) {
-            console.error(error)
+    const [typing, setTyping] = useState(false)
+    const [post, setPost] = useState(null)
+    const handleKeyPress=(e)=>{
+        if (e.key == 'Enter') {
+            handleSendMessage(post)
         }
     }
-    return <>
-        <div className='py-3 px-5 bg-gray-700 flex items-center gap-5'>
+    const handleSendMessage=async(payload)=>{
+        if (payload != null) {
+            await axios.post('http://127.0.0.1:8000/api/send-chat', {message: payload})
+            .then(res=>console.log(res))
+            .catch(err=>console.error(err))
+            location.reload()
+        }
+    }
+    
+    setTimeout(()=>{setTyping(false)}, 1000)
+    const suggest = ['Hi!', 'How this chatbot working?']
+    return <div className='min-h-[100vh]'>
+        <div className='py-3 px-5 w-full bg-gray-700 flex items-center gap-5 fixed top-0 z-20'>
             <Link className='py-2 px-2 rounded-lg text-white text-xl hover:bg-slate-800' to='/'><IoIosArrowBack /></Link>
-            <div className='text-white text-2xl font-semibold'>My Asistant</div>
+            <div className='text-white text-2xl font-semibold select-none'>My Asistant</div>
         </div>
 
-        <Conversation data={data}/>
+        <Conversation typing={typing}/>
+
+        <div className='px-5 flex items-center justify-center gap-3 bottom-16 left-[50%] -translate-x-[50%] fixed z-10'>
+            {suggest && suggest.map(item=>{
+                return <div key={item} className='px-5 py-2 border border-slate-400 bg-slate-800/80 hover:border-white hover:text-white rounded-md cursor-pointer select-none ease-in-out duration-300' onClick={()=>{handleSendMessage(item)}}>
+                    {item}
+                </div>
+            })}
+        </div>
 
         <div>
-            <form onSubmit={()=>handleSendMessage(data)} className='px-5 pb-3 pt-10 w-full fixed bottom-0 bg-gradient-to-t from-slate-800 via-slate-800 to-transparent'>
+            <div  className='px-5 pb-3 pt-10 w-full fixed bottom-0 bg-gradient-to-t from-slate-800 via-slate-800 to-transparent'>
                 <div className='flex items-center justify-between gap-3 bg-white rounded-lg h-10'>
-                    <input type="text" className='w-full h-full rounded-lg px-3 focus:outline-none' placeholder='Type here to ask' onChange={(data)=>setData(data.target.value)}/>
-                    <button className='p-3 bg-slate-800 hover:bg-gray-700 text-white border border-white h-full rounded-r-md'><RiSendPlaneFill/></button>
+                    <input type="text" className='w-full h-full rounded-lg px-3 bg-white focus:outline-none text-black' placeholder='Type here to ask' onChange={(post)=>{
+                        setPost(post.target.value)
+                        setTyping(true)
+                    }} name='message' onKeyPress={handleKeyPress}/>
+                    <button className='p-3 bg-slate-800 hover:bg-gray-700 text-white border border-white h-full rounded-r-md' onClick={()=>{handleSendMessage(post)}}>
+                        <RiSendPlaneFill/>
+                    </button>
                 </div>
-            </form>
+            </div>
         </div>
-    </>
+    </div>
 }
 
 export default Chat
