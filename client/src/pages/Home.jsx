@@ -5,8 +5,8 @@ import { FaCaretDown, FaCaretRight } from "react-icons/fa"
 const Home=()=>{
     
     return <div className="h-[100vh] flex flex-col items-center justify-center bg-gradient-to-t from-transparent to-gray-900">
-        <div className="text-center text-4xl font-montserrat relative hover:animate-pulse ease-in-out duration-300 cursor-default">
-            <div className="blur-sm hover:blur-md text-yellow-100">
+        <div className="text-center text-4xl font-montserrat relative cursor-default">
+            <div className="blur-lg text-yellow-100 animate-pulse ease-in-out">
                 Ask anything, your assistant is ready to answer. <br /> Click button on below to start conversation
             </div>
             <div className="text-white top-[50%] left-[50%] absolute w-full -translate-x-[50%] -translate-y-[50%]">
