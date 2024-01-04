@@ -82,7 +82,7 @@ const Chat=()=>{
                     setTyping(true)
                     scrollToEnd()
                 }} name='message' onKeyPress={handleKeyPress} ref={inputRef}/>
-                <button className='p-3 bg-slate-800 hover:bg-gray-700 text-white border border-white h-full rounded-r-md' onClick={()=>{handleSendMessage(post);inputRef.current.value = ''}}>
+                <button className={`p-3 bg-slate-800 hover:bg-gray-700 ${post ? 'text-white' : 'text-gray-600'} border border-white h-full rounded-r-md`} onClick={()=>{handleSendMessage(post);inputRef.current.value = ''}}>
                     <RiSendPlaneFill/>
                 </button>
             </div>
