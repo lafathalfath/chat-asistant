@@ -18,7 +18,6 @@ const CurrentConversation=({payload, post, typing})=>{
     if (payload){
         conv.push({chat: post, response: payload.response})
     }
-    
     return <div className="w-full">
         {conv.length!=0 ? conv.map(item=>{
             return <div key={item.chat} className='w-full'>
