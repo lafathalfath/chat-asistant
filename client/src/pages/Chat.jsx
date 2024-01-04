@@ -52,12 +52,11 @@ const Chat=()=>{
             smooth: true
         })
     }
+    useEffect(()=>{
+        scrollToEnd()
+    }, [])
     
-    // useEffect(()=>{
-    //     scrollToEnd()
-    // }, [post])
-
-    return <div className='pb-28 min-h-[100vh] relative'>
+    return <div className='pb-28 min-h-[100vh] relative' id='chatPage'>
         <div className='py-3 px-5 w-full bg-gray-700 flex items-center gap-5 fixed top-0 z-20'>
             <Link className='py-2 px-2 rounded-lg text-white text-xl hover:bg-slate-800' to='/'><IoIosArrowBack /></Link>
             <div className='text-white text-2xl font-semibold select-none'>My Asistant</div>
@@ -76,18 +75,16 @@ const Chat=()=>{
             })}
         </div>
 
-        <div>
-            <div  className='px-5 pb-3 pt-10 w-full fixed bottom-0 bg-gradient-to-t from-slate-800 via-slate-800 to-transparent'>
-                <div className='flex items-center justify-between gap-3 bg-white rounded-lg h-10'>
-                    <input type="text" className='w-full h-full rounded-lg px-3 bg-white focus:outline-none text-black' placeholder='Type here to ask' onChange={(post)=>{
-                        setPost(post.target.value)
-                        setTyping(true)
-                        scrollToEnd()
-                    }} name='message' onKeyPress={handleKeyPress} ref={inputRef}/>
-                    <button className='p-3 bg-slate-800 hover:bg-gray-700 text-white border border-white h-full rounded-r-md' onClick={()=>{handleSendMessage(post);inputRef.current.value = ''}}>
-                        <RiSendPlaneFill/>
-                    </button>
-                </div>
+        <div  className='px-5 pb-3 pt-10 w-full fixed bottom-0 bg-gradient-to-t from-slate-800 via-slate-800 to-transparent'>
+            <div className='flex items-center justify-between gap-3 bg-white rounded-lg h-10'>
+                <input type="text" className='w-full h-full rounded-lg px-3 bg-white focus:outline-none text-black' placeholder='Type here to ask' onChange={(post)=>{
+                    setPost(post.target.value)
+                    setTyping(true)
+                    scrollToEnd()
+                }} name='message' onKeyPress={handleKeyPress} ref={inputRef}/>
+                <button className='p-3 bg-slate-800 hover:bg-gray-700 text-white border border-white h-full rounded-r-md' onClick={()=>{handleSendMessage(post);inputRef.current.value = ''}}>
+                    <RiSendPlaneFill/>
+                </button>
             </div>
         </div>
 

@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react"
-import { FaCaretDown, FaUser } from "react-icons/fa"
+import { FaUser } from "react-icons/fa"
 import { RiRobot2Fill } from "react-icons/ri"
-import { scroller } from "react-scroll"
 
 
 const CurrentConversation=({payload, post, typing})=>{
-    // let docHeigth = true
-    // const setDocHeigth=(e)=>docHeigth=e
-    // const scrollToEnd=()=>{ 
-    //     scroller.scrollTo('end', {
-    //         duration: 500,
-    //         delay: 100,
-    //         smooth: true
-    //     })
-    // }
+
     let conv = []
     if (payload){
         conv.push({chat: post, response: payload.response})
     }
+
     return <div className="w-full">
+
         {conv.length!=0 ? conv.map(item=>{
             return <div key={item.chat} className='w-full'>
                 <div className='w-full h-fit'>
@@ -57,9 +49,7 @@ const CurrentConversation=({payload, post, typing})=>{
                 <FaUser className='mr-2 p-1 rounded-full bg-white text-2xl text-gray-700'/>
             </div>
         </div>}
-        {/* {docHeigth && <div className='p-2 fixed bottom-16 right-5 z-10 cursor-pointer select-none text-slate-400 bg-slate-800/80 hover:border-white hover:text-white border border-slate-400 rounded-md ease-in-out duration-300' onClick={scrollToEnd}>
-            <FaCaretDown />
-        </div>} */}
+
     </div>
 }
 
