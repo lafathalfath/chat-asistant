@@ -7,6 +7,7 @@ import Conversation from './component/Conversation'
 import CurrentConversation from './component/CurrentConversation'
 import { FaCaretDown } from 'react-icons/fa'
 import { scroller } from 'react-scroll'
+import Head from '../layout/Head'
 
 const Chat=()=>{
 
@@ -57,6 +58,8 @@ const Chat=()=>{
     }, [])
     
     return <div className='pb-28 min-h-[100vh] relative' id='chatPage'>
+        <Head title={'Chat'}/>
+
         <div className='py-3 px-5 w-full bg-gray-700 flex items-center gap-5 fixed top-0 z-20'>
             <Link className='py-2 px-2 rounded-lg text-white text-xl hover:bg-slate-800' to='/'><IoIosArrowBack /></Link>
             <div className='text-white text-2xl font-semibold select-none'>My Asistant</div>

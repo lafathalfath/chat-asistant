@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom"
 import { FaCaretDown, FaCaretRight } from "react-icons/fa"
+import Head from "../layout/Head"
 // import { useState } from "react"
 
 const Home=()=>{
     
     return <div className="h-[100vh] flex flex-col items-center justify-center bg-gradient-to-t from-transparent to-gray-900">
+        <Head title={'Home'}/>
+
         <div className="text-center text-4xl font-montserrat relative cursor-default">
             <div className="blur-lg text-yellow-100 animate-pulse ease-in-out">
                 Ask anything, your assistant is ready to answer. <br /> Click button on below to start conversation

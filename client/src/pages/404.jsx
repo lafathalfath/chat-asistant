@@ -1,7 +1,10 @@
 import { FaCaretLeft } from "react-icons/fa"
+import Head from "../layout/Head"
 
 const NotFound=()=>{
     return <div className="w-full min-h-[100vh] flex flex-col items-center justify-center gap-3">
+        <Head title={'Page Not Found'}/>
+
         <div className="text-2xl font-semibold">
             404
         </div>
